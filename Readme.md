@@ -1,7 +1,3 @@
----
-title: NovaSonic Three-Agent Trust & Transparency Pipeline
-layout: default
----
 
 # NovaSonic — Three-Agent Trust & Transparency Pipeline
 
