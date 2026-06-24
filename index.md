@@ -1,8 +1,3 @@
----
-title: NovaSonic Three-Agent Trust & Transparency Pipeline
-layout: default
----
-
 # NovaSonic — Three-Agent Trust & Transparency Pipeline
 
 This repository contains the working three-agent AI pipeline built for an NCI assessment.
@@ -19,10 +14,10 @@ The pipeline chains exactly three of the five studied archetypes. Each agent rec
 Assigned Challenge
         |
         v
-[ AGENT 1: RESEARCHER ]  diagnoses root cause + 8 transparency data points
-        |  HANDOFF 1 (8 data points)
+[ AGENT 1: RESEARCHER ]  diagnoses root cause + 7 transparency data points
+        |  HANDOFF 1 (7 data points)
         v
-[ AGENT 2: DESIGNER ]    builds the Creator Trust & Transparency Dashboard (10 traceable panels)
+[ AGENT 2: DESIGNER ]    builds the Creator Trust & Transparency Dashboard (traceable panels)
         |  HANDOFF 2 (dashboard panels)
         v
 [ AGENT 3: COMMUNICATOR ] writes the creator launch package (email, in-app notice, trust FAQ)
@@ -33,31 +28,25 @@ Assigned Challenge
 
 ![Pipeline Architecture](https://raw.githubusercontent.com/naosantana228-web/Build-It-Then-Distrust-It/main/architecture.png)
 
-## Evidence the Pipeline Runs (Appendix B)
+## Visible Handoffs (Evidence)
 
-The complete machine-generated run is in **[transcript.md](https://github.com/naosantana228-web/Build-It-Then-Distrust-It/blob/main/transcript.md)**. The handoffs are visible: each downstream agent opens with a `HANDOFF RECEIVED` block.
+The pipeline was executed live on **Gemini 2.5 Flash-Lite**. The handoffs are visible because each downstream agent opens with a `HANDOFF RECEIVED` block naming exactly what it inherited:
 
-- **Handoff 1 (Researcher to Designer):** the Designer lists all 8 of the Researcher's data points and maps every dashboard panel back to a specific field.
-- **Handoff 2 (Designer to Communicator):** the Communicator names the exact dashboard panels it is announcing and promises only features the Designer specified.
+- **Handoff 1 (Researcher → Designer):** the Designer lists all 7 Researcher data points and states *"No data points are being deferred."*
+- **Handoff 2 (Designer → Communicator):** the Communicator names the exact dashboard panels it is announcing, and only promises features the Designer specified.
 
-## How to Run It Yourself
+## Files in this repository
 
-Requirements: Python 3 and an OpenAI API key.
+| File | What it is |
+|------|------------|
+| `NovaSonic_Pipeline.ipynb` | The three-agent pipeline (Colab notebook, Gemini). System prompts inside = Appendix A. |
+| `transcript.md` | **Full clean run transcript** — evidence of execution + visible handoffs (Appendix B). |
+| `NovaSonic_Flawed_Run.ipynb` | A deliberately weakly-constrained run used to surface genuine failures. |
+| `flawed_transcript.md` | The flawed run output — source of the Failure Dossier quotes. |
+| `architecture.png` | The pipeline / handoff diagram. |
 
-```bash
-pip3 install openai
-export OPENAI_API_KEY="sk-...your key..."
-python3 run_pipeline.py
-```
+## How to reproduce
 
-The script prints each agent and each handoff to the console, then writes a fresh `transcript.md`.
-
-> Note: the `MODEL` constant in `run_pipeline.py` defaults to `gpt-4o`. Change it to any model your key supports (e.g. `gpt-4o-mini`).
-
-## Files
-
-| File | Description |
-|------|-------------|
-| `run_pipeline.py` | The three-agent orchestration script (system prompts included). |
-| `transcript.md` | Full transcript of a real run — evidence of execution and visible handoffs. |
-| `architecture.png` | Pipeline / handoff diagram. |
+1. Open `NovaSonic_Pipeline.ipynb` in Google Colab.
+2. Paste a Gemini API key into Cell 2 (free key from Google AI Studio).
+3. Run Cell 1 → Cell 2 → Cell 3. The run is saved to `transcript.md`.
